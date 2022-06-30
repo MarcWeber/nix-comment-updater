@@ -1,0 +1,41 @@
+{
+  "package": {
+  "name": ""
+  },
+
+  "devDependencies": [
+    "utils-testrunner"
+  ],
+
+  "dependencies": [
+    "rimraf",
+    "utils-spawn",
+    "argparse"
+  ],
+
+  "tsconfig": {
+  "compilerOptions": {
+    "outFile": "./dist/nix-comment-updater.js",
+    "jsx": "react",
+    "strict": true,
+    "jsxFactory": "createElement",
+
+    "module": "commonjs",
+    "target": "esnext",
+
+    "sourceMap": true,
+    "importHelpers": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "outDir":"./dist",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+    "/*": ["src/*"]
+    }
+  },
+  "exclude": [
+  ]
+  }
+}
+
