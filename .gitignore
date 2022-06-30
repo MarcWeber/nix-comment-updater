@@ -1,0 +1,8 @@
+
+/node_modules
+/.vscode
+/dist
+/.fyn
+/tsconfig.json.protect
+/package.json.installed
+/package.json.protect
