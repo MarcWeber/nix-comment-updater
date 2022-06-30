@@ -26,14 +26,20 @@ export const github_updater: UpdateBlockFunction<GithubJson> = async (o) => {
                 : r.rev
               )
 
-        return to_nix({
-            __outer: true,
-            src: ['__call', 'fetchFromGitHub', {
+
+        const call = ['__call', 'fetchFromGitHub', {
                 rev: r.rev,
                 sha256: r.sha256,
                 repo: j.repo,
                 owner: j.owner,
-            }],
+            }]
+
+        if (j.fetch_only)
+            return to_nix(call);
+
+        return to_nix({
+            __outer: true,
+            src: call,
             ...extra_keys({name, version}, j)
         })
 

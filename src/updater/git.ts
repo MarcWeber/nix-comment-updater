@@ -19,7 +19,7 @@ export const git_updater: UpdateBlockFunction<GitJson> = async (o) => {
 
         const name = j.name
             ? j.name
-            : o.url.replace(/.*\//, '')
+            : j.url.replace(/.*\//, '')
 
         const version =
             j.rev
@@ -29,13 +29,19 @@ export const git_updater: UpdateBlockFunction<GitJson> = async (o) => {
                 : r.rev
               )
 
-        return to_nix({
-            __outer: true,
-            src: ['__call', 'fetchgit', {
+
+        const call = ['__call', 'fetchgit', {
                 rev: r.rev,
                 sha256: r.sha256,
                 url: r.url
-            }],
+            }]
+
+        if (j.fetch_only)
+            return to_nix(call);
+
+        return to_nix({
+            __outer: true,
+            src: call,
             ...extra_keys({name, version}, j)
         })
     }
