@@ -1,18 +1,16 @@
 {
   "compilerOptions": {
+    "outFile": "./dist/nix-comment-updater.js",
     "jsx": "react",
     "strict": true,
     "jsxFactory": "createElement",
-
-
     "module": "commonjs",
     "target": "esnext",
-
     "sourceMap": true,
     "importHelpers": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "outFile": "./dist/nix-updater.js",
+    "outDir": "./dist",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
@@ -25,11 +23,23 @@
       "utils-spawn": [
         "src/tsmono/utils-spawn"
       ],
+      "utils-scalar-limiter/*": [
+        "src/tsmono/utils-scalar-limiter/*"
+      ],
+      "utils-scalar-limiter": [
+        "src/tsmono/utils-scalar-limiter"
+      ],
       "utils-testrunner/*": [
         "src/tsmono/utils-testrunner/*"
       ],
       "utils-testrunner": [
         "src/tsmono/utils-testrunner"
+      ],
+      "utils-testrunner-node-chalk/*": [
+        "src/tsmono/utils-testrunner-node-chalk/*"
+      ],
+      "utils-testrunner-node-chalk": [
+        "src/tsmono/utils-testrunner-node-chalk"
       ],
       "utils-exception-to-string/*": [
         "src/tsmono/utils-exception-to-string/*"
@@ -37,7 +47,7 @@
       "utils-exception-to-string": [
         "src/tsmono/utils-exception-to-string"
       ],
-      "nix-updater": [
+      "nix-comment-updater": [
         "src/*"
       ]
     },
@@ -57,6 +67,7 @@
     "baseUrl": "."
   },
   "exclude": [
-    "./dist"
+    "./dist",
+    "./dist/nix-comment-updater.js"
   ]
 }

@@ -1,7 +1,9 @@
 {
   "package": {
-  "name": ""
+    "name": "nix-comment-updater"
   },
+
+  rsync_instead_of_symlink: true,
 
   "devDependencies": [
     "utils-testrunner"
@@ -10,32 +12,33 @@
   "dependencies": [
     "rimraf",
     "utils-spawn",
-    "argparse"
+    "argparse",
+    "utils-scalar-limiter"
   ],
 
   "tsconfig": {
-  "compilerOptions": {
-    "outFile": "./dist/nix-comment-updater.js",
-    "jsx": "react",
-    "strict": true,
-    "jsxFactory": "createElement",
+    "compilerOptions": {
+      "outFile": "./dist/nix-comment-updater.js",
+      "jsx": "react",
+      "strict": true,
+      "jsxFactory": "createElement",
 
-    "module": "commonjs",
-    "target": "esnext",
+      "module": "commonjs",
+      "target": "esnext",
 
-    "sourceMap": true,
-    "importHelpers": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "outDir":"./dist",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "paths": {
-    "/*": ["src/*"]
-    }
-  },
-  "exclude": [
-  ]
+      "sourceMap": true,
+      "importHelpers": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "outDir":"./dist",
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "paths": {
+        "/*": ["src/*"]
+      }
+    },
+    "exclude": [
+    ]
   }
 }
 

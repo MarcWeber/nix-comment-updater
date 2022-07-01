@@ -51,6 +51,6 @@ export const nix_prefetch_git = async (o: nix_prefetch_git_args): Promise<nix_pr
         ...(o.rev ? ['--rev', o.rev] : []),
         ...(o['branch-name'] ? ['--branch-name', o['branch-name']] : []),
         ...(o.hash ? ['--hash', o.hash] : []),
-    ], { }).promise.then((x) => JSON.parse(x.out))
+    ], { detached: true }).promise.then((x) => JSON.parse(x.out))
 }
 

@@ -14,33 +14,36 @@ export type GithubJson =
 export const github_updater: UpdateBlockFunction<GithubJson> = async (o) => {
     const j = o.json
     if (j.updater == 'github') {
-        const r = await nix_prefetch_github(j)
+        return action(`github ${JSON.stringify(j)} ${o.region.filename}`, async () => {
 
-        const name = j.repo
+            const r = await nix_prefetch_github(j)
 
-        const version =
+            const name = j.repo
+
+            const version =
             j.rev
             ? j.rev
             : (j['branch-name']
                 ? `${j['branch-name']}-${r.rev}`
                 : r.rev
-              )
+            )
 
 
-        const call = ['__call', 'fetchFromGitHub', {
+            const call = ['__call', 'fetchFromGitHub', {
                 rev: r.rev,
                 sha256: r.sha256,
                 repo: j.repo,
                 owner: j.owner,
             }]
 
-        if (j.fetch_only)
-            return to_nix(call);
+            if (j.fetch_only)
+                return to_nix(call);
 
-        return to_nix({
-            __outer: true,
-            src: call,
-            ...extra_keys({name, version}, j)
+            return to_nix({
+                __outer: true,
+                src: call,
+                ...extra_keys({name, version}, j)
+            })
         })
 
     }

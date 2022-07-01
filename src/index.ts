@@ -107,9 +107,9 @@ export class NixFile {
                         },
                         json
                     })
-                    if ( new_contents || new_contents == "skip") break;
+                    if (new_contents == "skip") break;
                 }
-                if (!new_contents || new_contents == "skip"){
+                if (!new_contents){
                     new_contents = contents.join("\n")
                 }
 
