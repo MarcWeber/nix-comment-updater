@@ -14,3 +14,20 @@ src/updater/git.ts
 
 src/updater/ruby-marc.ts
 # NIX_COMMENT_UPDATER_START {"ruby_marc_key": "webkos_testing_selenium" }
+
+
+How to use ?
+============
+Run ./bundle.sh (after installing esbuild)
+
+But such into your .bashrc
+
+nix_comment_updater(){
+  ( node PATH_TO_CHECKOUT/dist/nix-comment-updater.js "$@"; )
+}
+
+# 3 processes in parallel
+nix_comment_updater update -p 3  pkgs/desktops/arcan-latest/**/*.nix
+
+# only update those JSON dictionaries which contain { "owner":"letoram", ... }
+nix_comment_updater update -f owner=letoram  pkgs/desktops/arcan-latest/**/*.nix
