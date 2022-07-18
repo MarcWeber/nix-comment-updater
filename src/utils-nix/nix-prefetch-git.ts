@@ -1,4 +1,4 @@
-import { path_or_build } from "."
+import { nixpkgs_executable } from "."
 import spawn from "utils-spawn";
 
 export type nix_prefetch_git_args = {
@@ -46,7 +46,7 @@ export type nix_prefetch_git_result = {
 }
 
 export const nix_prefetch_git = async (o: nix_prefetch_git_args): Promise<nix_prefetch_git_result> => {
-    const nix_prefetch_git = await path_or_build("nix-prefetch-git", "nix-prefetch-git")
+    const nix_prefetch_git = await nixpkgs_executable("nix-prefetch-git")
     return spawn([nix_prefetch_git, o.url,
         ...(o.rev ? ['--rev', o.rev] : []),
         ...(o['branch-name'] ? ['--branch-name', o['branch-name']] : []),

@@ -77,11 +77,17 @@ export class NixFile {
         fs.writeFileSync(this.filename!, this.contents())
     }
 
-    public async update_blocks(updaters: UpdateBlockFunction<any>[]){
+    public async update_blocks(
+        updaters: UpdateBlockFunction<any>[],
+        preprocessors: Array<(s: string) => string>
+    ){
 
         const promises = this.split_contents.map( async (s,i) => {
             if (i % 2 == 0){
             } else {
+                for (let p of  preprocessors || []) {
+                    s = p(s)
+                }
                 const lines = s.split("\n")
                 const g = lines[0].match(REGEX_START)
                 if (!g) throw 'unexpected'
@@ -108,6 +114,7 @@ export class NixFile {
                         json
                     })
                     if (new_contents == "skip") break;
+                    if (new_contents) break;
                 }
                 if (!new_contents){
                     new_contents = contents.join("\n")

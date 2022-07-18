@@ -80,7 +80,7 @@ export const vimPluginFromGithub = async (o:{repo: string, owner: string, rev: s
     `
 }
 
-export const vim_with_vam_executable: UpdateBlockFunction<VimWithVamExecutableJSON> = async (o) => {
+export const updater: UpdateBlockFunction<VimWithVamExecutableJSON> = async (o) => {
     const j = o.json
     if ('vim-with-vam-executable-name' in j) {
 

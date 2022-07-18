@@ -1,5 +1,5 @@
 import spawn from "utils-spawn";
-import { path_or_build } from "."
+import { nixpkgs_executable } from "."
 /*
 usage: nix-prefetch-github [-h] [--fetch-submodules] [--no-fetch-submodules] [--leave-dot-git] [--no-leave-dot-git]
                            [--deep-clone] [--no-deep-clone] [--verbose] [--nix] [--json] [--version] [--rev REV]
@@ -42,6 +42,7 @@ export type nix_prefetch_github_args = {
 }
 
 export type nix_prefetch_github_result = {
+    url: string
     "owner": string,
     "repo": string,
     "rev": string,
@@ -52,12 +53,16 @@ export type nix_prefetch_github_result = {
 }
 
 export const nix_prefetch_github = async (o: nix_prefetch_github_args): Promise<nix_prefetch_github_result> => {
-    const nix_prefetch_github = await path_or_build("nix-prefetch-github", "nix-prefetch-github")
+    const nix_prefetch_github = await nixpkgs_executable("nix-prefetch-github")
     return spawn([nix_prefetch_github,
         ...(o.rev ? ['--rev', o.rev] : []),
         // ...(o['--branch-name'] ? ['--branch-name', o['--branch-name']] : []),
         // ...(o['--hash'] ? ['--hash', o['--hash']] : []),
         o.owner, o.repo,
-    ], { }).promise.then((x) => JSON.parse(x.out))
+    ], { }).promise.then((x) => ({
+        url: `https://github.com/${o.owner}/${o.repo}`,
+        ... JSON.parse(x.out)
+    })
+    )
 }
 

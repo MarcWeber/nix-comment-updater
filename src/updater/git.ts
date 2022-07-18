@@ -11,13 +11,13 @@ export type GitJson =
     extra_keys?: ExtraKeys
 } & nix_prefetch_git_args
 
-export const git_updater: UpdateBlockFunction<GitJson> = async (o) => {
+export const updater: UpdateBlockFunction<GitJson> = async (o) => {
      const j = o.json
     if (j.updater == 'git') {
         return action(`git ${JSON.stringify(j)} ${o.region.filename}`, async () => {
             const r = await nix_prefetch_git(o.json)
 
-            const name = j.name
+            const pname = j.name
                 ? j.name
                 : j.url.replace(/.*\//, '')
 
@@ -42,7 +42,7 @@ export const git_updater: UpdateBlockFunction<GitJson> = async (o) => {
             return to_nix({
                 __outer: true,
                 src: call,
-                ...extra_keys({name, version}, j)
+                ...extra_keys({pname, version}, j)
             })
         })
     }

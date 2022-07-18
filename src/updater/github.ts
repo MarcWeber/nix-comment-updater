@@ -11,14 +11,14 @@ export type GithubJson =
     add_version?: true
 } & nix_prefetch_github_args
 
-export const github_updater: UpdateBlockFunction<GithubJson> = async (o) => {
+export const updater: UpdateBlockFunction<GithubJson> = async (o) => {
     const j = o.json
     if (j.updater == 'github') {
         return action(`github ${JSON.stringify(j)} ${o.region.filename}`, async () => {
 
             const r = await nix_prefetch_github(j)
 
-            const name = j.repo
+            const pname = j.repo
 
             const version =
             j.rev
@@ -42,7 +42,7 @@ export const github_updater: UpdateBlockFunction<GithubJson> = async (o) => {
             return to_nix({
                 __outer: true,
                 src: call,
-                ...extra_keys({name, version}, j)
+                ...extra_keys({version, pname}, j)
             })
         })
 

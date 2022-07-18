@@ -1,8 +1,10 @@
 import { NixFile, UpdateBlockFunction } from "../src";
 import { ArgumentParser } from "argparse";
-import { git_updater } from "./updater/git";
-import { github_updater } from "./updater/github";
-import { ruby_marc_updater } from "./updater/ruby-marc";
+import * as git from "./updater/git";
+import * as github from "./updater/github";
+import * as nixpkgs_ruby_overlay from "./updater/nixpkgs-ruby-overlay";
+import * as vim_with_vam_executable from "./updater/vim-with-vam-executable";
+import * as ruby_marc_key from "./updater/ruby-marc-key";
 import scalar_limiter from "utils-scalar-limiter";
 
 const main = async () => {
@@ -39,16 +41,23 @@ const main = async () => {
 
         const updaters: UpdateBlockFunction<any>[] = [
             // async (o) => filter_match(o) ? "skip" : undefined,
-            git_updater,
-            github_updater,
-            ruby_marc_updater
+            git.updater,
+            github.updater,
+            nixpkgs_ruby_overlay.updater,
+            vim_with_vam_executable.updater,
+            ruby_marc_key.updater,
         ]
 
         const limiter = scalar_limiter({available: args.parallel})
 
         const promises = files.map(async (filename: string) => {
+            console.log("opening ", filename);
             const f = new NixFile({ filename })
-            const do_work = () => f.update_blocks(updaters)
+
+            const do_work = () => f.update_blocks(updaters, [
+                (s) => s.replace('ruby_marc_key', 'nixpkgs_ruby_overlay')
+            ])
+
             if (args.parallel){
                 await limiter.with_lock(do_work)
             } else {

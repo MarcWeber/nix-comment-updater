@@ -23,6 +23,12 @@
       "utils-spawn": [
         "src/tsmono/utils-spawn"
       ],
+      "utils-lazy/*": [
+        "src/tsmono/utils-lazy/*"
+      ],
+      "utils-lazy": [
+        "src/tsmono/utils-lazy"
+      ],
       "utils-scalar-limiter/*": [
         "src/tsmono/utils-scalar-limiter/*"
       ],
