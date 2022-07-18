@@ -23,6 +23,7 @@ export const nixpkgs_executable = async (executable: string) => {
             const A: Record< string, string> = {
                 'nix-prefetch-git': 'nix-prefetch-git',
                 'nix-prefetch-github': 'nix-prefetch-github',
+                'ruby': 'ruby',
             }
             if (executable in A) {
                 return `${ await build_path(A[executable])}/bin/${executable}`

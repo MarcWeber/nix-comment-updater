@@ -9,8 +9,8 @@ export type RubyMarcJson = {
 
 export const updater: UpdateBlockFunction<RubyMarcJson> = async (o) => {
     const j = o.json
-    if ('nixpkgs-ruby-overlay' in j) {
-        const v = j['nixpkgs-ruby-overlay']
+    if ('ruby_marc_key' in j) {
+        const v = j.ruby_marc_key
         return action(`nixpkgs-ruby-overlay ${v} ${o.region.filename}`,
             () => spawn(['nix-shell', '-p', 'ruby', '--run', `ruby get.rb --as-env ${v}`], {
                 'cwd': '/etc/nixos/nixpkgs-ruby-overlay',

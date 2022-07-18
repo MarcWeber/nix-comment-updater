@@ -3,6 +3,7 @@ import { UpdateBlockFunction } from ".."
 import spawn from "utils-spawn";
 import { action } from "../utils"
 import fs from "fs";
+import {nixpkgs_executable, NIX_PATH} from "../utils-nix";
 
 export type NixpkgsRubyOverlayJson = {
 
@@ -16,26 +17,21 @@ export type NixpkgsRubyOverlayJson = {
     deps_patches: Record< string, string[]>
 }
 
+let ruby = undefined;
+
 export const updater: UpdateBlockFunction<NixpkgsRubyOverlayJson> = async (o) => {
     const j = o.json
+
+    const ruby = await nixpkgs_executable("ruby")
 
     if ('nixpkgs-ruby-overlay' in j) {
         const v = {name: j["nixpkgs-ruby-overlay"], deps: j.deps, deps_patches: j.deps_patches ?? {}}
         fs.writeFileSync("/tmp/ruby-deps-to-nix-json-deps", JSON.stringify(v), 'utf8')
         return action(`nixpkgs-ruby-overlay ${v} ${o.region.filename}`,
-            () => spawn(['nix-shell', '-p', 'ruby', '--run', `ruby ruby-deps-to-nix.rb --cache-file /tmp/ruby2nix --json-deps-file /tmp/ruby-deps-to-nix-json-deps `], {
-                'cwd': '/etc/nixos/nixpkgs-ruby-overlay',
+            () => spawn([ruby, 'ruby-deps-to-nix.rb', '--cache-file',  '/tmp/ruby2nix', '--json-deps-file', '/tmp/ruby-deps-to-nix-json-deps'], {
+                'cwd': NIX_PATH['nixpkgs-ruby-overlay'] ?? '/etc/nixos/nixpkgs-ruby-overlay',
             }).promise.then((x) => x.out))
     }
 
-
-    if ('ruby_marc_key' in j){
-        const v = j['ruby_marc_key']
-        return action(`nixpkgs-ruby-overlay ${v} ${o.region.filename}`,
-            () => spawn(['nix-shell', '-p', 'ruby', '--run', `ruby get.rb --as-env ${v}`], {
-                'cwd': '/etc/nixos/nixpkgs-ruby-overlay',
-            }).promise.then((x) => x.out))
-
-    }
 
 }
