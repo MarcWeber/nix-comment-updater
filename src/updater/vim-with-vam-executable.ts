@@ -17,7 +17,7 @@ export type VimPlugins = {
 }
 
 export type VimWithVamExecutableJSON = {
-    'vim-with-vam-executable-name': string
+    'vim-with-vam-executable-name': string,
 } & VimPlugins
 
 const get_nix_code_using_vim2nix = async (j: {"vim-plugins": string}) => {
@@ -97,7 +97,7 @@ export const updater: UpdateBlockFunction<VimWithVamExecutableJSON> = async (o) 
 
                 return `
                 vim_configurable.customize {
-                    name = "vim-marc-weber";
+                    name = "${v}";
                     vimrcConfig.vam.knownPlugins =
                         let
                         inherit (vimUtils.override {inherit vim;}) rtpPath addRtp buildVimPluginFrom2Nix vimHelpTags;

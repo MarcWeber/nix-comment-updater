@@ -27,16 +27,37 @@ src/updater/nixpkgs-ruby-overlay.ts
 
 src/updater/vim-addon-manager.ts
 ======================
+vim_blah = 
 # NIX_COMMENT_UPDATER_START {"vim-with-vam-executable-name":"vim-XX", "vim-plugins": "filename"}
+
+where filename points to a file see VAM documentation. Eg lines like
+
+{'name': 'github:MarcWeber'}
+{'name': 'github:MarcWeber/ultisnips'}
+{'name': 'vim-addon-other'}
+{'name': 'vim-addon-sql'}
+{'name': 'sparkup'}
+{'name': 'tlib'}
+{'name': 'vim-addon-toggle-buffer'}
+{'name': 'vim-addon-git'}
+{'name': 'vim-addon-mw-utils'}
+{'name': 'vim-addon-goto-thing-at-cursor'}
+{'name': 'matchit.zip'}
+{'name': 'vim-addon-syntax-checker'}
+{'name': 'vim-addon-rfc'}
+{'name': 'vim-addon-surround'}
+{'name': 'vim-addon-toc'}
+{'name': 'vim-addon-commenting'}
+{'filename_regex': '\%(php\|inc\|php.inc\|hsc\|lhs\)$', 'names': 'vim-addon-xdebug', 'vim-addon-php-manual']}
+{'filetype_regex': '\%(rb)$', 'names': ['vim-ruby', 'vim-addon-rdebug', 'vim-addon-ruby-debug-ide', 'textobj-rubyblock' ]}
+{'filetype_regex': '\%(rs)$', 'names': ['rust', 'github:rust-lang/rust.vim']}
+{'filetype_regex': '\%(nix)$', 'names': ['vim-addon-nix']}
+
+
 TODO:
 - allow passing plugins as json dictionary ?
 - get rid of vim2nix cause it's annoying and slow
 
-[{name: ...}] or "vam-addon-dictionaries-file": "xx" }
-the {name: .. } dictionaries see VAM's documentation about  vam#Scripts
-Examples:
-{ "filetype_regex" = ''\%(nix)$$''; "names" = [ ''vim-addon-nix'' ]; }
-{ "name" = ''vim-addon-commenting''; }
 
 
 How to use ?
