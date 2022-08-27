@@ -1,7 +1,9 @@
-// see https://github.com/MarcWeber/nixpkgs-ruby-overlay
-// yes vim2nix eventuall should be replaced by something more reliable and
-// faster
 // mind /tmp/export-vim-plugin-for-nix-cache-file
+//
+//
+// TODO: the viml code sucks.
+// So reimplement vim-pi viml code using JS so that it's clean and can be used
+// by all tools Vim, this and more
 import fs from "fs";
 import { UpdateBlockFunction } from ".."
 import spawn from "utils-spawn";
@@ -10,10 +12,13 @@ import { build_path } from "../utils-nix"
 import { nix_prefetch_github, nix_prefetch_github_args } from "../utils-nix/nix-prefetch-github";
 import * as cp from "child_process";
 
-export type VimWithVamExecutableJSON = {
-    'vim-with-vam-executable-name': string
+export type VimPlugins = {
     'vim-plugins': string // filepath
 }
+
+export type VimWithVamExecutableJSON = {
+    'vim-with-vam-executable-name': string
+} & VimPlugins
 
 const get_nix_code_using_vim2nix = async (j: {"vim-plugins": string}) => {
 
@@ -108,6 +113,5 @@ export const updater: UpdateBlockFunction<VimWithVamExecutableJSON> = async (o) 
         )
 
     }
-
 
 }
