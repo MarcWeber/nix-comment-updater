@@ -11,10 +11,20 @@
 
   "dependencies": [
     "rimraf",
+    "axios",
+    "xpath",
+    "xmldom;types",
+    "parse5",
+    "xmlserializer;types",
+    "htmlparser2",
     "utils-spawn",
     "argparse",
     "utils-lazy",
-    "utils-scalar-limiter"
+    "utils-scalar-limiter",
+    "utils-debug",
+    "utils-select-version",
+    "utils-nix",
+    "utils-spawn"
   ],
 
   "tsconfig": {

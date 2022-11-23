@@ -1,8 +1,11 @@
-import { to_nix } from "/utils-nix"
+import to_nix from "utils-nix/to_nix"
 
-export type ExtraKeys = "version" | "pname" | "name"
+export type ExtraKey = "version" | "pname" | "name"
+export type ExtraKeys = { extra_keys: ExtraKey[] }
+export type AddMeta = { add_meta?: true }
+export type FullDerivation = { full_derivation?: true }
 
-export const extra_keys = (o: any, json: {extra_keys?: ExtraKeys[]}) => {
+export const extra_keys = (o: any, json: {extra_keys?: ExtraKey[]}) => {
     const ek = json.extra_keys ?? []
 
     return {

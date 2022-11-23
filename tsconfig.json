@@ -35,6 +35,24 @@
       "utils-scalar-limiter": [
         "src/tsmono/utils-scalar-limiter"
       ],
+      "utils-debug/*": [
+        "src/tsmono/utils-debug/*"
+      ],
+      "utils-debug": [
+        "src/tsmono/utils-debug"
+      ],
+      "utils-select-version/*": [
+        "src/tsmono/utils-select-version/*"
+      ],
+      "utils-select-version": [
+        "src/tsmono/utils-select-version"
+      ],
+      "utils-nix/*": [
+        "src/tsmono/utils-nix/*"
+      ],
+      "utils-nix": [
+        "src/tsmono/utils-nix"
+      ],
       "utils-testrunner/*": [
         "src/tsmono/utils-testrunner/*"
       ],

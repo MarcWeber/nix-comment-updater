@@ -49,7 +49,7 @@ export class NixFile {
         let phase: "outside" | "inside" = "outside"
 
         for (let v of lines) {
-            console.log("line", v);
+            // console.log("line", v);
             const a = () => append.push(v)
             if (phase == "outside" && REGEX_START.test(v)){
                 f(); phase = "inside"
@@ -65,8 +65,8 @@ export class NixFile {
 
         if (phase == "inside") throw `missing ${END}`
 
-        console.log("split_contents", this.split_contents);
-        console.log("split_contents", this.split_contents.length);
+        // console.log("split_contents", this.split_contents);
+        // console.log("split_contents", this.split_contents.length);
     }
 
     public contents(){
@@ -94,9 +94,17 @@ export class NixFile {
                 const indent = g[1]
                 const json_str = g[2]
 
-                console.log("lines", lines);
-                console.log("json_str", json_str);
-                const json = JSON.parse(json_str)
+                // console.log("lines", lines);
+                // console.log("json_str", json_str);
+
+
+                let json
+                try {
+                    json = JSON.parse(json_str);
+                } catch (e){
+                    throw `bad json ${json_str} err: ${e}`
+                }
+
                 const contents = lines.slice(1, lines.length - 1)
 
 
@@ -116,7 +124,7 @@ export class NixFile {
                     if (new_contents == "skip") break;
                     if (new_contents) break;
                 }
-                if (!new_contents){
+                if (!new_contents || new_contents == "skip"){
                     new_contents = contents.join("\n")
                 }
 

@@ -1,8 +1,8 @@
 import { UpdateBlockFunction } from ".."
-import spawn from "utils-spawn";
+import spawn from "utils-spawn"
 import { action } from "/utils"
-import { nix_prefetch_github, nix_prefetch_github_args } from "../utils-nix/nix-prefetch-github";
-import { to_nix } from "/utils-nix";
+import { nix_prefetch_github, nix_prefetch_github_args } from "utils-nix/nix-prefetch-github";
+import to_nix from "utils-nix/to_nix";
 import { extra_keys } from ".";
 
 export type GithubJson =
@@ -32,8 +32,8 @@ export const updater: UpdateBlockFunction<GithubJson> = async (o) => {
             const call = ['__call', 'fetchFromGitHub', {
                 rev: r.rev,
                 sha256: r.sha256,
-                repo: j.repo,
-                owner: j.owner,
+                repo: r.repo,
+                owner: r.owner,
             }]
 
             if (j.fetch_only)

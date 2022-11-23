@@ -3,7 +3,7 @@ import { UpdateBlockFunction } from ".."
 import spawn from "utils-spawn";
 import { action } from "../utils"
 import fs from "fs";
-import {nixpkgs_executable, NIX_PATH} from "../utils-nix";
+import {nixpkgs_executable, NIX_PATH} from "utils-nix";
 
 export type NixpkgsRubyOverlayJson = {
 

@@ -6,3 +6,5 @@
 /tsconfig.json.protect
 /package.json.installed
 /package.json.protect
+
+/src/tsmono

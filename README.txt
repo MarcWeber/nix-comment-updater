@@ -11,12 +11,15 @@ updating the code you want
 
 src/updater/git.ts
 ======================
-{ git: 'git-url', revision: 'hash or branchname', add_version: true }
-
-
+# NIX_COMMENT_UPDATER_START { "git": "git-url", "rev": "hash or branchname", "add_version": true }
+# NIX_COMMENT_UPDATER_END
 
 src/updater/github.ts
 ======================
+
+use new syntax instead ?
+      url = "github:cqparts/cqparts/018e87e14c2c4d1d40b4bfe6a7e22bcf9baf0a53";
+
 { github: 'user/name', revision: 'hash or branchname', add_version: true }
 
 
@@ -25,8 +28,34 @@ src/updater/nixpkgs-ruby-overlay.ts
 # NIX_COMMENT_UPDATER_END
 
 
+src/updater/url.ts
+===================
+# NIX_COMMENT_UPDATER_START {"fetchurl": "http://source.tar.gz"}
+# NIX_COMMENT_UPDATER_END
+
+src/updater/pypi.ts
+===================
+
+src/updator/python-many.ts
+============================
+python2nix
+
+solvers 
+conda ?
+other solver
+
+https://github.com/nix-community/pypi2nix
+https://github.com/proger/python2nix (own solver ? last updated 2021)
+https://github.com/tailhook/reqtxt2nix
+
+
+src/updater/pecl.ts
+===================
+  # NIX_COMMENT_UPDATER_START {"updater": "pecl", "name": "xdebug"}
+  # NIX_COMMENT_UPDATER_END
+
 src/updater/vim-addon-manager.ts
-======================
+================================
 vim_blah = 
 # NIX_COMMENT_UPDATER_START {"vim-with-vam-executable-name":"vim-XX", "vim-plugins": "filename"}
 
@@ -80,3 +109,46 @@ ROADMAP
 =========
 [ ] add caching eg /tmp/nix-comment-updater-date/<key>
     so that its reasonable up to date without wasting your time
+
+
+
+alternatives:
+=============
+https://nixos.wiki/wiki/Flakes
+
+
+
+
+TODO reimplement:
+================
+snippet nix_repository_manager_svn
+	# REGION AUTO UPDATE: { name="$1"; type="svn"; url=""; [ groups = "group1 group2"; ] }
+	# END
+
+snippet nix_repository_manager_hg
+	# REGION AUTO UPDATE: { name="$1"; type="hg"; url=""; [ branch = ""; groups = "group1 group2"; ] }
+	# END
+
+snippet nix_repository_manager_cvs
+	# REGION AUTO UPDATE: { name="$1"; type = "cvs"; cvsRoot = ":pserver:anonymous@cinepaint.cvs.sourceforge.net:/cvsroot/cinepaint"; module="cinepaint"; }
+	# END
+
+snippet nix_repository_manager_bzr
+	# REGION AUTO UPDATE: { name=""; type="bzr"; url=""; [ args="extra args such as -Ossl.cert_reqs=none"; groups = "group1 group2"; ] }
+	# END
+
+
+VIM
+===
+
+  fun! NixCommentUpdaterCurrentFile(...) abort
+    if len(a:000) == 0
+      !node /pr/typescript/ts/nix-comment-updater/dist/nix-comment-updater.js update %:p
+    else
+      " one filter argument
+      exec '!node /pr/typescript/ts/nix-comment-updater/dist/nix-comment-updater.js -f '.a:1.'  update %:p'
+    endif
+  endf
+
+  command! -nargs=? NixCommentUpdater call NixCommentUpdaterCurrentFile(<f-args>)
+

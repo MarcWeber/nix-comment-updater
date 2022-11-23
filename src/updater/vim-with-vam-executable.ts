@@ -8,8 +8,8 @@ import fs from "fs";
 import { UpdateBlockFunction } from ".."
 import spawn from "utils-spawn";
 import { action } from "../utils"
-import { build_path } from "../utils-nix"
-import { nix_prefetch_github, nix_prefetch_github_args } from "../utils-nix/nix-prefetch-github";
+import { build_path } from "utils-nix"
+import { nix_prefetch_github, nix_prefetch_github_args } from "utils-nix/nix-prefetch-github";
 import * as cp from "child_process";
 
 export type VimPlugins = {

@@ -1,7 +1,8 @@
 import { UpdateBlockFunction } from ".."
 import { action } from "/utils"
-import { NIX_PATH, to_nix} from "../utils-nix"
-import { nix_prefetch_git, nix_prefetch_git_args } from "/utils-nix/nix-prefetch-git";
+import { NIX_PATH} from "utils-nix"
+import to_nix from "utils-nix/to_nix"
+import { nix_prefetch_git, nix_prefetch_git_args } from "utils-nix/nix-prefetch-git";
 import { ExtraKeys, extra_keys } from ".";
 
 export type GitJson =
@@ -13,6 +14,7 @@ export type GitJson =
 
 export const updater: UpdateBlockFunction<GitJson> = async (o) => {
      const j = o.json
+
     if (j.updater == 'git') {
         return action(`git ${JSON.stringify(j)} ${o.region.filename}`, async () => {
             const r = await nix_prefetch_git(o.json)
