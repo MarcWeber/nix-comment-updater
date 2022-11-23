@@ -1,9 +1,21 @@
-snippet nix_comment_github
-	# NIX_COMMENT_UPDATER_START {"updater": "github",  "repo": "$1", "owner": "$2", "rev": "master", "extra_keys": ["name", "version"] }
+snippet nix_comment_git
+	# NIX_COMMENT_UPDATER_START { "updater": "git", "url": "" [, "rev": "master"]}
+	# NIX_COMMENT_UPDATER_END
+snippet nix_comment_github_owner_repo
+	# NIX_COMMENT_UPDATER_START {"updater": "github", "owner": "$2", "repo": "$1", "rev": "master", "extra_keys": ["name", "version"] }
+	# NIX_COMMENT_UPDATER_END
+snippet nix_comment_github_githuburl
+	# NIX_COMMENT_UPDATER_START {"updater": "github", "githuburl": "",  "rev": "master", "extra_keys": ["name", "version"] }
 	# NIX_COMMENT_UPDATER_END
 snippet nix_comment_pypi_full
 	# NIX_COMMENT_UPDATER_START {"updater": "pypi",  "name": "$1", "full_derivation": true}
 	# NIX_COMMENT_UPDATER_END
 snippet nix_comment_pypi_nixpkgs
 	# NIX_COMMENT_UPDATER_START {"updater": "pypi",  "name": "$1", "extra_fields": ["pname", "version"] }
+	# NIX_COMMENT_UPDATER_END
+snippet nix_comment_fetchurl
+	# NIX_COMMENT_UPDATER_START {"fetchurl_url": "$1" }
+	# NIX_COMMENT_UPDATER_END
+snippet nix_comment_pecl
+	# NIX_COMMENT_UPDATER_START {"updater": "pecl", "name": "$1", [, "state": "latest_unstable"]}
 	# NIX_COMMENT_UPDATER_END
