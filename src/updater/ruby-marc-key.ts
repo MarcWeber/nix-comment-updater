@@ -1,6 +1,6 @@
 // see https://github.com/MarcWeber/nixpkgs-ruby-overlay
 import { UpdateBlockFunction } from ".."
-import spawn from "utils-spawn";
+import spawn from "u-spawn";
 import { action } from "../utils"
 
 export type RubyMarcJson = {

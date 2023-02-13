@@ -14,8 +14,8 @@ import * as xmlserializer from "xmlserializer";
 import xmldom from "xmldom";
 
 
-import utils_debug from 'utils-debug'
-const log = utils_debug('utils-scraper-pecl-php');
+import utils_debug from 'u-debug'
+const log = utils_debug('u-scraper-pecl-php');
 
 type State = "stable" | "beta" // ... ?
 

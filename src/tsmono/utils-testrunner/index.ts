@@ -1,9 +1,9 @@
 // replace deep-equal with lodash/isEqual?
 import equal from "deep-equal"
-import { exception_to_str } from "utils-exception-to-string";
+import { exception_to_str } from "u-exception-to-string";
 /* usage
 
-import {run_tests_print} from 'utils-testrunner';
+import {run_tests_print} from 'u-testrunner';
 
 await run_tests_print({
   'description': 'test',

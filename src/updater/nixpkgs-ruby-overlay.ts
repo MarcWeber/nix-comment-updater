@@ -1,9 +1,9 @@
 // see https://github.com/MarcWeber/nixpkgs-ruby-overlay
 import { UpdateBlockFunction } from ".."
-import spawn from "utils-spawn";
+import spawn from "u-spawn";
 import { action } from "../utils"
 import fs from "fs";
-import {nixpkgs_executable, NIX_PATH} from "utils-nix";
+import {nixpkgs_executable, NIX_PATH} from "u-nix";
 
 export type NixpkgsRubyOverlayJson = {
 
@@ -26,21 +26,21 @@ let ruby = undefined;
 export const updater: UpdateBlockFunction<NixpkgsRubyOverlayJson> = async (o) => {
     const j = o.json
 
-    const ruby = await nixpkgs_executable("ruby")
+        if ('nixpkgs-ruby-overlay' in j) {
 
-    let deps = [...j.deps]
+        const ruby = await nixpkgs_executable("ruby")
 
-    if (j["add-dev-packages"])
-        // some of the other tools eventually are more annoying then helpful ?
-        deps = [...deps, "solargraph", "rubocop", "reek"]
+        let deps = [...j.deps]
 
-    if ('nixpkgs-ruby-overlay' in j) {
+        if (j["add-dev-packages"])
+            // some of the other tools eventually are more annoying then helpful ?
+            deps = [...deps, "solargraph", "rubocop", "reek"]
 
         const ruby_version = 'ruby_version' in j ? ['--ruby-version', j.ruby_version] : []
         const v = {name: j["nixpkgs-ruby-overlay"], deps: deps, deps_patches: j.deps_patches ?? {}}
         fs.writeFileSync("/tmp/ruby-deps-to-nix-json-deps", JSON.stringify(v), 'utf8')
         return action(`nixpkgs-ruby-overlay ${v} ${o.region.filename}`,
-            () => spawn([ruby, 'ruby-deps-to-nix.rb'] + ruby_version + [ '--cache-file',  '/tmp/ruby2nix', '--json-deps-file', '/tmp/ruby-deps-to-nix-json-deps'], {
+            () => spawn([ruby, 'ruby-deps-to-nix.rb', ...ruby_version, '--cache-file',  '/tmp/ruby2nix', '--json-deps-file', '/tmp/ruby-deps-to-nix-json-deps'], {
                 'cwd': NIX_PATH['nixpkgs-ruby-overlay'] ?? '/etc/nixos/nixpkgs-ruby-overlay',
             }).promise.then((x) => x.out))
     }

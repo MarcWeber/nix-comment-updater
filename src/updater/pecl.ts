@@ -1,9 +1,9 @@
 import { UpdateBlockFunction } from ".."
 import { action } from "/utils"
 import { NIX_PATH} from "../utils-nix"
-import to_nix from "utils-nix/to_nix"
+import to_nix from "u-nix/to_nix"
 import { ExtraKeys, extra_keys, AddMeta, FullDerivation } from ".";
-import { nix_prefetch_url } from "utils-nix/nix-prefetch-url";
+import { nix_prefetch_url } from "u-nix/nix-prefetch-url";
 import { releases_by_name, Release } from "../utils-scraper-peclphp"
 
 

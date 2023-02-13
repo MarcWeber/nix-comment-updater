@@ -6,7 +6,7 @@
   rsync_instead_of_symlink: true,
 
   "devDependencies": [
-    "utils-testrunner"
+    "u-testrunner"
   ],
 
   "dependencies": [
@@ -17,14 +17,14 @@
     "parse5",
     "xmlserializer;types",
     "htmlparser2",
-    "utils-spawn",
+    "u-spawn",
     "argparse",
-    "utils-lazy",
-    "utils-scalar-limiter",
-    "utils-debug",
-    "utils-select-version",
-    "utils-nix",
-    "utils-spawn"
+    "u-lazy",
+    "u-scalar-limiter",
+    "u-debug",
+    "u-select-version",
+    "u-nix",
+    "u-spawn"
   ],
 
   "tsconfig": {

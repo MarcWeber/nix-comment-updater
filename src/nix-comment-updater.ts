@@ -8,7 +8,7 @@ import * as ruby_marc_key from "./updater/ruby-marc-key";
 import * as pypi from "./updater/pypi";
 import * as fetchurl from "./updater/fetchurl";
 import * as pecl from "./updater/pecl";
-import scalar_limiter from "utils-scalar-limiter";
+import scalar_limiter from "u-scalar-limiter";
 
 
 const main = async () => {

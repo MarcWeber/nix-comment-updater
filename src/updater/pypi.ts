@@ -3,12 +3,12 @@
  * This way more stable results eventually can be produced ?
  */
 import { UpdateBlockFunction } from ".."
-import spawn from "utils-spawn";
+import spawn from "u-spawn";
 import { action } from "/utils"
-import { nix_prefetch_github, nix_prefetch_github_args } from "utils-nix/nix-prefetch-github";
-import to_nix from "utils-nix/to_nix";
+import { nix_prefetch_github, nix_prefetch_github_args } from "u-nix/nix-prefetch-github";
+import to_nix from "u-nix/to_nix";
 import { extra_keys } from ".";
-import { first_matching } from "utils-select-version"
+import { first_matching } from "u-select-version"
 
 import axios from "axios";
 

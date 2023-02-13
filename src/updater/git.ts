@@ -1,8 +1,8 @@
 import { UpdateBlockFunction } from ".."
 import { action } from "/utils"
-import { NIX_PATH} from "utils-nix"
-import to_nix from "utils-nix/to_nix"
-import { nix_prefetch_git, nix_prefetch_git_args } from "utils-nix/nix-prefetch-git";
+import { NIX_PATH} from "u-nix"
+import to_nix from "u-nix/to_nix"
+import { nix_prefetch_git, nix_prefetch_git_args } from "u-nix/nix-prefetch-git";
 import { ExtraKeys, extra_keys } from ".";
 
 export type GitJson =

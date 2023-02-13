@@ -1,5 +1,5 @@
 export type nix_path_key = "nixos"|"nixpkgs"|"nixos-config" | string
-import spawn from "utils-spawn"
+import spawn from "u-spawn"
 import fs from "fs";
 import path from "path";
 

@@ -1,8 +1,8 @@
 import { UpdateBlockFunction } from ".."
-import spawn from "utils-spawn"
+import spawn from "u-spawn"
 import { action } from "/utils"
-import { nix_prefetch_github, nix_prefetch_github_args } from "utils-nix/nix-prefetch-github";
-import to_nix from "utils-nix/to_nix";
+import { nix_prefetch_github, nix_prefetch_github_args } from "u-nix/nix-prefetch-github";
+import to_nix from "u-nix/to_nix";
 import { extra_keys } from ".";
 
 export type GithubJson =
@@ -27,7 +27,6 @@ export const updater: UpdateBlockFunction<GithubJson> = async (o) => {
                 ? `${j['branch-name']}-${r.rev}`
                 : r.rev
             )
-
 
             const call = ['__call', 'fetchFromGitHub', {
                 rev: r.rev,

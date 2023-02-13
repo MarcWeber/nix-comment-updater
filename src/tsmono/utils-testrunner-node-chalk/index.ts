@@ -1,5 +1,5 @@
 // should be moved into it's own package to drop chalk dependency ?
-import { Config, Test, result_to_string, TestsResult, tests_failed, run } from 'utils-testrunner';
+import { Config, Test, result_to_string, TestsResult, tests_failed, run } from 'u-testrunner';
 import chalk from "chalk"
 
 export const print_tests_results = (result: TestsResult, description?: string) => {

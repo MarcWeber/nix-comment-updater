@@ -1,4 +1,4 @@
-import to_nix from "utils-nix/to_nix"
+import to_nix from "u-nix/to_nix"
 
 export type ExtraKey = "version" | "pname" | "name"
 export type ExtraKeys = { extra_keys: ExtraKey[] }
