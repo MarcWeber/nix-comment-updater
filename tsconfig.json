@@ -17,61 +17,61 @@
       "/*": [
         "src/*"
       ],
-      "utils-spawn/*": [
-        "src/tsmono/utils-spawn/*"
+      "u-spawn/*": [
+        "src/tsmono/u-spawn/*"
       ],
-      "utils-spawn": [
-        "src/tsmono/utils-spawn"
+      "u-spawn": [
+        "src/tsmono/u-spawn"
       ],
-      "utils-lazy/*": [
-        "src/tsmono/utils-lazy/*"
+      "u-lazy/*": [
+        "src/tsmono/u-lazy/*"
       ],
-      "utils-lazy": [
-        "src/tsmono/utils-lazy"
+      "u-lazy": [
+        "src/tsmono/u-lazy"
       ],
-      "utils-scalar-limiter/*": [
-        "src/tsmono/utils-scalar-limiter/*"
+      "u-scalar-limiter/*": [
+        "src/tsmono/u-scalar-limiter/*"
       ],
-      "utils-scalar-limiter": [
-        "src/tsmono/utils-scalar-limiter"
+      "u-scalar-limiter": [
+        "src/tsmono/u-scalar-limiter"
       ],
-      "utils-debug/*": [
-        "src/tsmono/utils-debug/*"
+      "u-debug/*": [
+        "src/tsmono/u-debug/*"
       ],
-      "utils-debug": [
-        "src/tsmono/utils-debug"
+      "u-debug": [
+        "src/tsmono/u-debug"
       ],
-      "utils-select-version/*": [
-        "src/tsmono/utils-select-version/*"
+      "u-select-version/*": [
+        "src/tsmono/u-select-version/*"
       ],
-      "utils-select-version": [
-        "src/tsmono/utils-select-version"
+      "u-select-version": [
+        "src/tsmono/u-select-version"
       ],
-      "utils-nix/*": [
-        "src/tsmono/utils-nix/*"
+      "u-nix/*": [
+        "src/tsmono/u-nix/*"
       ],
-      "utils-nix": [
-        "src/tsmono/utils-nix"
+      "u-nix": [
+        "src/tsmono/u-nix"
       ],
-      "utils-testrunner/*": [
-        "src/tsmono/utils-testrunner/*"
+      "u-testrunner/*": [
+        "src/tsmono/u-testrunner/*"
       ],
-      "utils-testrunner": [
-        "src/tsmono/utils-testrunner"
+      "u-testrunner": [
+        "src/tsmono/u-testrunner"
       ],
-      "utils-testrunner-node-chalk/*": [
-        "src/tsmono/utils-testrunner-node-chalk/*"
+      "u-testrunner-node-chalk/*": [
+        "src/tsmono/u-testrunner-node-chalk/*"
       ],
-      "utils-testrunner-node-chalk": [
-        "src/tsmono/utils-testrunner-node-chalk"
+      "u-testrunner-node-chalk": [
+        "src/tsmono/u-testrunner-node-chalk"
       ],
-      "utils-exception-to-string/*": [
-        "src/tsmono/utils-exception-to-string/*"
+      "u-exception-to-string/*": [
+        "src/tsmono/u-exception-to-string/*"
       ],
-      "utils-exception-to-string": [
-        "src/tsmono/utils-exception-to-string"
+      "u-exception-to-string": [
+        "src/tsmono/u-exception-to-string"
       ],
-      "nix-comment-updater": [
+      "ts-nix-comment-updater": [
         "src/*"
       ]
     },
